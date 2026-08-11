@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: #eee;
+      padding: 24px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      margin-bottom: 24px;
+      font-size: 0.9rem;
+      color: #9fb3d1;
+      letter-spacing: 0.5px;
+    }
+
+    #card {
+      width: 100%;
+      max-width: 420px;
+      padding: 28px;
+      border-radius: 14px;
+      background: rgba(31, 58, 95, 0.45);
+      border: 1px solid #2a4d7a;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      color: #b3d4fc;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #2a4d7a;
+      border-radius: 8px;
+      background: #1f3a5f;
+      color: #eee;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #00b894;
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    select option {
+      background: #1f3a5f;
+    }
+
+    .error {
+      margin-top: 4px;
+      min-height: 1.1em;
+      font-size: 0.8rem;
+      color: #ff5b7d;
+    }
+
+    #submit {
+      width: 100%;
+      margin-top: 8px;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #e94560;
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    #submit:hover {
+      background: #ff5b7d;
+      transform: scale(1.02);
+    }
+
+    #summary {
+      display: none;
+      text-align: center;
+    }
+
+    #summary h2 {
+      margin-bottom: 20px;
+      color: #00d1a7;
+    }
+
+    #summary .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #2a4d7a;
+      text-align: left;
+    }
+
+    #summary .row:last-child {
+      border-bottom: none;
+    }
+
+    #summary .label {
+      color: #9fb3d1;
+    }
+
+    #summary .value {
+      color: #eee;
+      text-align: right;
+      word-break: break-all;
+    }
+
+    #reset {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #375a7f;
+      color: #fff;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    #reset:hover {
+      background: #46709a;
+    }
+  </style>
+</head>
+<body>
+  <h1>Student Registration</h1>
+  <div class="subtitle">Fill in your details to register for a course</div>
+
+  <div id="card">
+    <form id="form" novalidate>
+      <div class="field">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" autocomplete="name" placeholder="e.g. Jane Doe">
+        <div class="error" id="nameError"></div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" autocomplete="email" placeholder="e.g. jane@example.com">
+        <div class="error" id="emailError"></div>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" autocomplete="tel" placeholder="e.g. +1 555 123 4567">
+        <div class="error" id="phoneError"></div>
+      </div>
+
+      <div class="field">
+        <label for="course">Course</label>
+        <select id="course">
+          <option value="">Select a course</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Business Administration">Business Administration</option>
+          <option value="Mechanical Engineering">Mechanical Engineering</option>
+          <option value="Graphic Design">Graphic Design</option>
+          <option value="Data Analytics">Data Analytics</option>
+        </select>
+        <div class="error" id="courseError"></div>
+      </div>
+
+      <button type="submit" id="submit">Submit</button>
+    </form>
+
+    <div id="summary">
+      <h2>Registration Complete!</h2>
+      <div class="row"><span class="label">Name</span><span class="value" id="sumName"></span></div>
+      <div class="row"><span class="label">Email</span><span class="value" id="sumEmail"></span></div>
+      <div class="row"><span class="label">Phone</span><span class="value" id="sumPhone"></span></div>
+      <div class="row"><span class="label">Course</span><span class="value" id="sumCourse"></span></div>
+      <button id="reset">Register Another Student</button>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('form');
+    const card = document.getElementById('card');
+    const summary = document.getElementById('summary');
+
+    const fields = {
+      name: document.getElementById('name'),
+      email: document.getElementById('email'),
+      phone: document.getElementById('phone'),
+      course: document.getElementById('course'),
+    };
+
+    const errors = {
+      name: document.getElementById('nameError'),
+      email: document.getElementById('emailError'),
+      phone: document.getElementById('phoneError'),
+      course: document.getElementById('courseError'),
+    };
+
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const PHONE_RE = /^[+\d][\d\s\-()]{6,17}$/;
+
+    function validate() {
+      let valid = true;
+
+      if (fields.name.value.trim() === '') {
+        errors.name.textContent = 'Name is required.';
+        valid = false;
+      } else {
+        errors.name.textContent = '';
+      }
+
+      if (fields.email.value.trim() === '') {
+        errors.email.textContent = 'Email is required.';
+        valid = false;
+      } else if (!EMAIL_RE.test(fields.email.value.trim())) {
+        errors.email.textContent = 'Enter a valid email address.';
+        valid = false;
+      } else {
+        errors.email.textContent = '';
+      }
+
+      if (fields.phone.value.trim() === '') {
+        errors.phone.textContent = 'Phone is required.';
+        valid = false;
+      } else if (!PHONE_RE.test(fields.phone.value.trim())) {
+        errors.phone.textContent = 'Enter a valid phone number.';
+        valid = false;
+      } else {
+        errors.phone.textContent = '';
+      }
+
+      if (fields.course.value === '') {
+        errors.course.textContent = 'Please select a course.';
+        valid = false;
+      } else {
+        errors.course.textContent = '';
+      }
+
+      return valid;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+
+      document.getElementById('sumName').textContent = fields.name.value.trim();
+      document.getElementById('sumEmail').textContent = fields.email.value.trim();
+      document.getElementById('sumPhone').textContent = fields.phone.value.trim();
+      document.getElementById('sumCourse').textContent = fields.course.value;
+
+      form.style.display = 'none';
+      summary.style.display = 'block';
+    });
+
+    document.getElementById('reset').addEventListener('click', () => {
+      form.reset();
+      Object.values(errors).forEach(el => el.textContent = '');
+      form.style.display = 'block';
+      summary.style.display = 'none';
+      fields.name.focus();
+    });
+  </script>
+</body>
+</html>
