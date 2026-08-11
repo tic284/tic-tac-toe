@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: #eee;
+    }
+
+    h1 {
+      margin-bottom: 16px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    #display {
+      width: 280px;
+      min-height: 60px;
+      margin-bottom: 16px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: #1f3a5f;
+      color: #b3d4fc;
+      font-size: 2.2rem;
+      text-align: right;
+      word-break: break-all;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      overflow-wrap: anywhere;
+    }
+
+    #buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 64px);
+      gap: 8px;
+    }
+
+    button {
+      width: 64px;
+      height: 56px;
+      border: none;
+      border-radius: 8px;
+      background: #1f3a5f;
+      color: #eee;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    button:hover:not(:disabled) {
+      background: #2a4d7a;
+      transform: scale(1.03);
+    }
+
+    button.operator {
+      background: #e94560;
+      color: #fff;
+    }
+
+    button.operator:hover:not(:disabled) {
+      background: #ff5b7d;
+    }
+
+    button.equals {
+      background: #00b894;
+      color: #fff;
+    }
+
+    button.equals:hover:not(:disabled) {
+      background: #00d1a7;
+    }
+
+    button.clear {
+      background: #375a7f;
+    }
+
+    button.clear:hover:not(:disabled) {
+      background: #46709a;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calculator</h1>
+  <div id="display">0</div>
+  <div id="buttons"></div>
+
+  <script>
+    const displayEl = document.getElementById('display');
+    const buttonsEl = document.getElementById('buttons');
+
+    const KEYS = [
+      'C', '⌫', '÷', '×',
+      '7', '8', '9', '−',
+      '4', '5', '6', '+',
+      '1', '2', '3', '=',
+      '0', '.', '00', ' '
+    ];
+
+    let expression = '';
+    let lastResult = null;
+
+    function render() {
+      displayEl.textContent = expression === '' ? '0' : expression;
+    }
+
+    function append(char) {
+      if (lastResult !== null || expression === 'Error') {
+        expression = '';
+        lastResult = null;
+      }
+      expression += char;
+      render();
+    }
+
+    function compute(expr) {
+      const tokens = expr.replace(/−/g, '-').replace(/×/g, '*').replace(/÷/g, '/');
+      const value = Function(`'use strict'; return (${tokens});`)();
+      if (!isFinite(value)) return 'Error';
+      return String(Math.round(value * 1e10) / 1e10);
+    }
+
+    function handleOperator(op) {
+      lastResult = null;
+
+      if (expression === '' || expression === 'Error') {
+        if (expression === 'Error') expression = '';
+        expression += op;
+        render();
+        return;
+      }
+
+      const last = expression[expression.length - 1];
+      if ('÷×−+'.includes(last)) {
+        expression = expression.slice(0, -1) + op;
+        render();
+        return;
+      }
+
+      try {
+        const result = compute(expression);
+        if (result === 'Error') {
+          expression = 'Error';
+          render();
+          return;
+        }
+        expression = result + op;
+        render();
+      } catch {
+        expression = 'Error';
+        render();
+      }
+    }
+
+    function handleEquals() {
+      if (expression === '' || expression === 'Error') return;
+      const result = compute(expression);
+      expression = result;
+      lastResult = result === 'Error' ? null : parseFloat(result);
+      render();
+    }
+
+    KEYS.forEach(key => {
+      if (key === ' ') return;
+      const button = document.createElement('button');
+      button.textContent = key;
+      if ('÷×−+'.includes(key)) button.className = 'operator';
+      else if (key === '=') button.className = 'equals';
+      else if (key === 'C') button.className = 'clear';
+
+      button.addEventListener('click', () => {
+        if (key === 'C') {
+          expression = '';
+          lastResult = null;
+        } else if (key === '⌫') {
+          expression = expression.slice(0, -1);
+        } else if ('÷×−+'.includes(key)) {
+          handleOperator(key);
+        } else if (key === '=') {
+          handleEquals();
+        } else {
+          append(key);
+        }
+        render();
+      });
+
+      buttonsEl.appendChild(button);
+    });
+
+    render();
+  </script>
+</body>
+</html>
