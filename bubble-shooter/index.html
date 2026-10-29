@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bubble Pop — Bubble Shooter</title>
+<meta name="description" content="A colorful bubble shooter game: aim, bounce, match three, and drop the hanging clusters.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="game">
+  <div class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">🫧</span>
+      <div class="brand-text">
+        <b>Bubble Pop</b>
+        <small>match 3 · clear the board</small>
+      </div>
+    </div>
+
+    <div class="stats" aria-label="Game statistics">
+      <div class="stat"><span>Score</span><b id="score">0</b></div>
+      <div class="stat"><span>Level</span><b id="level">1</b></div>
+      <div class="stat"><span>Best</span><b id="best">0</b></div>
+    </div>
+
+    <div class="actions">
+      <button class="icon" id="btn-pause" type="button" aria-label="Pause game" title="Pause (P)">⏸</button>
+      <button class="icon" id="btn-mute" type="button" aria-label="Mute sound" aria-pressed="false" title="Sound">🔊</button>
+      <button class="icon" id="btn-restart" type="button" aria-label="Restart game" title="Restart">↻</button>
+    </div>
+  </div>
+
+  <div class="stage" id="stage">
+    <canvas id="game" width="520" height="720" role="img" aria-label="Bubble shooter board. Aim with the pointer and click or tap to shoot."></canvas>
+
+    <div class="overlay" id="overlay-start">
+      <div class="panel">
+        <p class="eyebrow">Match 3 to pop</p>
+        <h1>Bubble<br><span>Shooter</span></h1>
+        <p class="lead">Aim with your pointer and shoot. Bubbles stick where they land — line up three or more of the same color to pop them. Anything left hanging falls.</p>
+        <button class="btn primary" id="start-play" type="button">Play now</button>
+        <p class="tiny">Desktop or touch · sound can be muted</p>
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay-over" hidden>
+      <div class="panel">
+        <p class="eyebrow danger">Board full</p>
+        <h2>Game over</h2>
+        <div class="result-row">
+          <div><span>Score</span><b id="over-score">0</b></div>
+          <div><span>Best</span><b id="over-best">0</b></div>
+        </div>
+        <button class="btn primary" id="again-play" type="button">Play again</button>
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay-clear" hidden>
+      <div class="panel">
+        <p class="eyebrow">Board cleared</p>
+        <h2>Level <span id="clear-level">1</span> done</h2>
+        <div class="result-row">
+          <div><span>Score</span><b id="clear-score">0</b></div>
+          <div><span>Next</span><b id="clear-next">2</b></div>
+        </div>
+        <button class="btn primary" id="next-level" type="button">Next level</button>
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay-pause" hidden>
+      <div class="panel">
+        <p class="eyebrow">Taking a breather</p>
+        <h2>Paused</h2>
+        <button class="btn primary" id="resume-play" type="button">Resume</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hint">
+    <span>Aim with pointer</span>
+    <span>Click / tap to shoot</span>
+    <span><kbd>S</kbd> swap</span>
+    <button class="link" id="btn-swap" type="button">⇄ Swap bubble</button>
+  </div>
+</main>
+
+<script src="game.js"></script>
+</body>
+</html>
