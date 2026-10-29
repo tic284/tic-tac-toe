@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dastak — Local Dropshipping Store</title>
+<meta name="description" content="Dastak is a local dropshipping storefront: everyday home, tech, beauty, fitness, and fashion finds delivered across Pakistan with cash on delivery.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip" href="#shop">Skip to products</a>
+
+<div class="announce">
+  <p>Free delivery on orders over Rs 3,000 · Cash on delivery across Pakistan</p>
+</div>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="#top" aria-label="Dastak home">
+      <span class="brand-mark" aria-hidden="true">D</span>
+      <span class="brand-text">Dastak<small>local dropshipping</small></span>
+    </a>
+    <div class="search">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input id="search" type="search" placeholder="Search products…  (press /)" autocomplete="off" aria-label="Search products">
+    </div>
+    <button class="cart-btn" id="cart-open" type="button">
+      <span aria-hidden="true">🛍</span>
+      <span class="cart-label">Cart</span>
+      <span class="cart-count" id="cart-count" aria-live="polite">0</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">Cash on delivery · 2–4 day shipping</p>
+        <h1>Everyday finds, <em>delivered to your door.</em></h1>
+        <p class="hero-sub">We source best-selling home, tech, and lifestyle products from trusted local suppliers and ship them across Pakistan. You pay when the parcel arrives.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#shop">Shop bestsellers</a>
+          <a class="btn btn-ghost" href="#how">How it works</a>
+        </div>
+        <ul class="hero-trust">
+          <li>7-day returns</li>
+          <li>Verified suppliers</li>
+          <li>No advance payment</li>
+        </ul>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-card a1"><span>🧹</span><b>Mini Vacuum</b><small>Rs 4,299</small></div>
+        <div class="art-card a2"><span>🎧</span><b>Earbuds Pro</b><small>Rs 3,499</small></div>
+        <div class="art-card a3"><span>🌅</span><b>Sunset Lamp</b><small>Rs 1,899</small></div>
+        <div class="art-badge">COD<b>available</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-band" aria-label="Store promises">
+    <div class="wrap trust-grid">
+      <div class="trust-item"><span aria-hidden="true">🚚</span><div><b>Free delivery</b><small>On orders over Rs 3,000</small></div></div>
+      <div class="trust-item"><span aria-hidden="true">💵</span><div><b>Pay on delivery</b><small>Cash when it reaches you</small></div></div>
+      <div class="trust-item"><span aria-hidden="true">↩️</span><div><b>7-day returns</b><small>Wrong item? Send it back</small></div></div>
+      <div class="trust-item"><span aria-hidden="true">📞</span><div><b>Real support</b><small>WhatsApp, 10am–8pm</small></div></div>
+    </div>
+  </section>
+  <section class="shop wrap" id="shop">
+    <div class="section-head">
+      <div>
+        <p class="kicker">The catalog</p>
+        <h2>Shop all products</h2>
+      </div>
+      <label class="sort">Sort
+        <select id="sort">
+          <option value="featured">Featured</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+          <option value="rating">Top rated</option>
+        </select>
+      </label>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+    <p class="results" id="results" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" hidden>
+      <p class="empty-icon" aria-hidden="true">🔍</p>
+      <h3>No products found</h3>
+      <p>Try a different search, or clear the category filter.</p>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Simple by design</p>
+          <h2>How Dastak works</h2>
+        </div>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="step-n">01</span>
+          <h3>Pick your product</h3>
+          <p>Browse the catalog and add what you need to the cart. No account, no sign-up.</p>
+        </li>
+        <li>
+          <span class="step-n">02</span>
+          <h3>We confirm by phone</h3>
+          <p>Our team calls or messages on WhatsApp to confirm your address and order.</p>
+        </li>
+        <li>
+          <span class="step-n">03</span>
+          <h3>Pay when it arrives</h3>
+          <p>Your parcel ships in 2–4 working days. Check the item, then hand over the cash.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="reviews wrap" aria-labelledby="reviews-title">
+    <div class="section-head">
+      <div>
+        <p class="kicker">4,000+ parcels delivered</p>
+        <h2 id="reviews-title">What customers say</h2>
+      </div>
+    </div>
+    <div class="review-grid">
+      <figure class="review">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>“Ordered the mini vacuum on Tuesday; it reached my flat in Lahore on Thursday. Works better than I expected for the price.”</blockquote>
+        <figcaption>Ayesha K. · Lahore</figcaption>
+      </figure>
+      <figure class="review">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>“The earbuds were exactly as described and the rider let me open the box before paying. That is why I ordered again.”</blockquote>
+        <figcaption>Bilal R. · Karachi</figcaption>
+      </figure>
+      <figure class="review">
+        <div class="stars" aria-label="4 out of 5 stars">★★★★☆</div>
+        <blockquote>“Delivery took one day longer than promised, but support replied on WhatsApp within minutes and kept me updated.”</blockquote>
+        <figcaption>Hina S. · Islamabad</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="Dastak home">
+        <span class="brand-mark" aria-hidden="true">D</span>
+        <span class="brand-text">Dastak<small>local dropshipping</small></span>
+      </a>
+      <p>Everyday products from trusted local suppliers, delivered across Pakistan with cash on delivery.</p>
+      <p class="foot-contact">WhatsApp: 0300 000 0000<br>care@dastak.pk</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#shop" data-cat-link="Home">Home &amp; kitchen</a></li>
+        <li><a href="#shop" data-cat-link="Electronics">Electronics</a></li>
+        <li><a href="#shop" data-cat-link="Beauty">Beauty</a></li>
+        <li><a href="#shop" data-cat-link="Fitness">Fitness</a></li>
+        <li><a href="#shop" data-cat-link="Fashion">Fashion</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#how">Delivery &amp; returns</a></li>
+        <li><a href="#shop">Track an order</a></li>
+        <li><a href="mailto:care@dastak.pk">Contact us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Pay with</h4>
+      <p>Cash on delivery<br>Easypaisa · JazzCash<br>Card on request</p>
+      <p class="foot-note">Orders confirmed by phone before dispatch.</p>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <p>© 2026 Dastak. Demo storefront — orders are simulated and stay in your browser.</p>
+    <p>Prices in PKR, inclusive of taxes.</p>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim" hidden></div>
+
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true" hidden>
+  <div class="drawer-head">
+    <h2 id="drawer-title">Your cart</h2>
+    <button class="icon-btn" id="cart-close" type="button" aria-label="Close cart">✕</button>
+  </div>
+  <div class="drawer-body">
+    <div id="cart-view">
+      <div class="free-ship" id="free-ship" hidden>
+        <p id="free-ship-text"></p>
+        <div class="ship-bar"><span id="ship-bar-fill"></span></div>
+      </div>
+
+      <div class="cart-items" id="cart-items"></div>
+
+      <div class="cart-empty" id="cart-empty" hidden>
+        <p class="empty-icon" aria-hidden="true">🛍</p>
+        <h3>Your cart is empty</h3>
+        <p>Browse the catalog and add something you like.</p>
+        <button class="btn btn-primary" id="empty-shop" type="button">Browse products</button>
+      </div>
+
+      <div class="cart-summary" id="cart-summary">
+        <div class="sum-row"><span>Subtotal</span><b id="sum-subtotal">Rs 0</b></div>
+        <div class="sum-row"><span>Delivery</span><b id="sum-delivery">Rs 0</b></div>
+        <div class="sum-row total"><span>Total</span><b id="sum-total">Rs 0</b></div>
+        <p class="cod-note">Cash on delivery · no advance payment</p>
+        <button class="btn btn-primary btn-block" id="to-checkout" type="button">Continue to checkout</button>
+      </div>
+    </div>
+    <form id="checkout-view" class="checkout" hidden novalidate>
+      <button type="button" class="back-link" id="back-to-cart">← Back to cart</button>
+      <h3>Delivery details</h3>
+      <p class="order-line" id="order-line"></p>
+
+      <div class="field">
+        <label for="f-name">Full name</label>
+        <input id="f-name" name="name" autocomplete="name" placeholder="Ayesha Khan">
+        <p class="err" id="err-name" aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label for="f-phone">Mobile number</label>
+        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0300 1234567">
+        <p class="err" id="err-phone" aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label for="f-city">City</label>
+        <select id="f-city" name="city">
+          <option value="">Choose your city</option>
+          <option>Karachi</option>
+          <option>Lahore</option>
+          <option>Islamabad</option>
+          <option>Rawalpindi</option>
+          <option>Faisalabad</option>
+          <option>Multan</option>
+          <option>Peshawar</option>
+          <option>Quetta</option>
+          <option>Sialkot</option>
+          <option>Hyderabad</option>
+          <option>Other</option>
+        </select>
+        <p class="err" id="err-city" aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label for="f-address">Complete address</label>
+        <textarea id="f-address" name="address" rows="3" placeholder="House 12, Street 4, Gulberg III"></textarea>
+        <p class="err" id="err-address" aria-live="polite"></p>
+      </div>
+
+      <fieldset class="payment">
+        <legend>Payment method</legend>
+        <label class="pay-option">
+          <input type="radio" name="payment" value="Cash on delivery" checked>
+          <span><b>Cash on delivery</b><small>Pay the rider when your parcel arrives</small></span>
+        </label>
+        <label class="pay-option">
+          <input type="radio" name="payment" value="Easypaisa / JazzCash">
+          <span><b>Easypaisa / JazzCash</b><small>We send a request after confirmation</small></span>
+        </label>
+      </fieldset>
+
+      <p class="demo-note">Demo checkout — no real payment is collected and nothing leaves your browser.</p>
+      <button class="btn btn-primary btn-block" type="submit">Place order</button>
+    </form>
+
+    <div id="success-view" class="success" hidden>
+      <div class="tick" aria-hidden="true">✓</div>
+      <h3>Order placed</h3>
+      <p>Thanks, <b id="success-name"></b>. We will call <b id="success-phone"></b> to confirm your delivery.</p>
+      <dl class="order-meta">
+        <div><dt>Order</dt><dd id="success-id"></dd></div>
+        <div><dt>Payment</dt><dd id="success-payment"></dd></div>
+        <div><dt>Total</dt><dd id="success-total"></dd></div>
+        <div><dt>Estimated delivery</dt><dd id="success-eta"></dd></div>
+      </dl>
+      <button class="btn btn-primary btn-block" id="success-continue" type="button">Continue shopping</button>
+    </div>
+  </div>
+</aside>
+
+<dialog class="modal" id="product-modal" aria-labelledby="modal-title">
+  <button class="icon-btn modal-close" id="modal-close" type="button" aria-label="Close product">✕</button>
+  <div id="modal-content"></div>
+</dialog>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<noscript>
+  <p class="noscript">This demo store needs JavaScript to show products and manage the cart.</p>
+</noscript>
+
+<script src="assets/products.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
