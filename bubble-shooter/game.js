@@ -950,5 +950,6 @@
   initLevelGrid(level);
   current = pickBoardColor();
   next = pickBoardColor();
+  draw();
   requestAnimationFrame(loop);
 })();
